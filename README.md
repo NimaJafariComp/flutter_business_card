@@ -60,10 +60,6 @@ You can customize the application by modifying the following:
 - **Projects**: Add or modify the `projects` list in `main.dart`.
 - **Skills**: Adjust the skills chips in the `leftColumn` widget.
 
-## Screenshots
-
-![Business Card Screenshot](https://nimajafaricomp.github.io/assets/headshot.png)
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
