@@ -276,10 +276,15 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                           final rightColumn = Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              Wrap(
+                                alignment: WrapAlignment.spaceBetween,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 12,
+                                runSpacing: 8,
                                 children: [
+                                  // Phone with label
                                   Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       IconButton(
                                         onPressed: () => _launchUrl(Uri(scheme: 'tel', path: '7475550198')),
@@ -300,20 +305,30 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                                     ],
                                   ),
 
+                                  // Email button
                                   TextButton.icon(
                                     onPressed: () => _launchUrl(Uri.parse('mailto:nima.mona82@gmail.com')),
                                     icon: const Icon(Icons.email_outlined, size: 18),
                                     label: const Text('nima.mona82@gmail.com'),
                                   ),
 
-                                  TextButton(
-                                    onPressed: () => _launchUrl(portfolioUri),
-                                    child: Text(
-                                      portfolioUri.toString(),
-                                      style: const TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w600,
+                                  // Portfolio link: constrained width to prevent layout shifting
+                                  ConstrainedBox(
+                                    constraints: const BoxConstraints(maxWidth: 320, minWidth: 120),
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: TextButton(
+                                        onPressed: () => _launchUrl(portfolioUri),
+                                        child: Text(
+                                          portfolioUri.toString(),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            decoration: TextDecoration.underline,
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -1,30 +1,33 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// basic Flutter widget test.
 
-import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_application_1/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('App shows author name and portfolio link', (WidgetTester tester) async {
+    // Build our app and trigger a frame
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the main content is visible
+    expect(find.text('Nima Jafari'), findsOneWidget);
+    expect(find.textContaining('nimajafaricomp.github.io'), findsOneWidget);
   });
-}
+  testWidgets('No overflow on narrow viewport', (WidgetTester tester) async {
+    // Simulate a narrow screen width
+    final binding = TestWidgetsFlutterBinding.ensureInitialized();
+    binding.window.physicalSizeTestValue = const ui.Size(360, 800);
+    binding.window.devicePixelRatioTestValue = 1.0;
+
+    await tester.pumpWidget(const MyApp());
+    // Advance a short time to let initial frames render (avoid pumpAndSettle timeouts caused by continuous animations)
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // Basic assertions
+    expect(find.text('Nima Jafari'), findsOneWidget);
+
+    // Clean up test window override
+    binding.window.clearPhysicalSizeTestValue();
+    binding.window.clearDevicePixelRatioTestValue();
+  });}
