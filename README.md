@@ -4,12 +4,18 @@ This Flutter application serves as a dynamic and interactive business card. It s
 
 ## Features
 
-- **Animated Backgrounds**: Smoothly transitioning gradient backgrounds for a visually appealing experience.
-- **Profile Section**: Displays your name, title, and a brief description of your expertise.
-- **Skills Chips**: Highlights your technical skills using interactive chips.
-- **Projects Showcase**: Lists your key projects with clickable links to their GitHub repositories.
-- **Contact Information**: Provides easy access to your email and portfolio website.
-- **Responsive Design**: Adapts seamlessly to different screen sizes.
+- **Animated Backgrounds**: Smooth gradient transitions for a simple, pleasant look.
+- **Profile Section**: Shows your name, title, short bio, and skills.
+- **Skills Chips**: Small badges for skills and technologies.
+- **Projects**: Links to key projects and repositories.
+- **Contact**: Tap email, portfolio, or phone. (The phone icon uses a `tel:` link where supported.)
+- **Responsive**: Layout adapts and avoids overflow on narrow screens.
+
+## What’s new
+
+- Tests were updated to match the current UI and now pass locally.
+- Responsive fixes were added so links and icons don't shift off the card.
+- A macOS release build was created and screenshots were captured for verification.
 
 ## Getting Started
 
@@ -38,13 +44,27 @@ Ensure you have the following installed:
    flutter pub get
    ```
 
+### Tests
+
+- Run analyzer and tests:
+  ```bash
+  flutter analyze
+  flutter test
+  ```
+- Note: tests were updated to match the UI and should pass locally.
+
 ### Running the Application
 
-1. Connect a physical device or start an emulator.
-2. Run the application:
+1. Connect a physical device, start an emulator, or run on macOS (desktop).
+2. Run the app (development):
    ```bash
    flutter run
    ```
+3. Build a macOS release (optional):
+   ```bash
+   flutter build macos
+   ```
+   The macOS app bundle will be at `build/macos/Build/Products/Release/flutter_application_1.app`.
 
 ## Project Structure
 
