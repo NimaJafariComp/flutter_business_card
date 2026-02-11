@@ -26,8 +26,6 @@ void main() {
 
     // ensure author text visible
     expect(find.text('Nima Jafari'), findsOneWidget);
-
-    // clear test window settings
     binding.window.clearPhysicalSizeTestValue();
     binding.window.clearDevicePixelRatioTestValue();
   });}
