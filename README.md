@@ -1,13 +1,12 @@
 # Flutter Business Card Application
 
-This Flutter application serves as a dynamic and interactive business card. It showcases a visually appealing design with animated gradients, a detailed profile, and links to projects, portfolio, and contact information. The app is designed to highlight your professional skills, interests, and achievements in a modern and engaging way.
+This Flutter application serves as a dynamic and interactive business card. It showcases a visually appealing design with animated gradients, a detailed profile, and links to portfolio, and contact information. The app is designed to highlight your professional skills, interests, and achievements in a modern and engaging way.
 
 ## Features
 
 - **Animated Backgrounds**: Smooth gradient transitions for a simple, pleasant look.
 - **Profile Section**: Shows your name, title, short bio, and skills.
 - **Skills Chips**: Small badges for skills and technologies.
-- **Projects**: Links to key projects and repositories.
 - **Contact**: Tap email, portfolio, or phone. (The phone icon uses a `tel:` link where supported.)
 - **Responsive**: Layout adapts and avoids overflow on narrow screens.
 
@@ -77,7 +76,6 @@ Ensure you have the following installed:
 You can customize the application by modifying the following:
 
 - **Profile Information**: Update the `about` string and `interests` list in `main.dart`.
-- **Projects**: Add or modify the `projects` list in `main.dart`.
 - **Skills**: Adjust the skills chips in the `leftColumn` widget.
 
 ## License
