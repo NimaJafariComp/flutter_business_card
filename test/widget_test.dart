@@ -3,7 +3,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_application_1/main.dart';
+import 'package:flutter_business_card/main.dart';
 
 void main() {
   testWidgets('App shows author name and portfolio link', (WidgetTester tester) async {
