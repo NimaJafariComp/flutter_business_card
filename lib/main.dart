@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// Entry point of the application
+// entry point
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define the main theme and home widget of the app
+    // set theme and home
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Helvetica Neue'),
@@ -23,7 +23,7 @@ class MyBusinessCardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold provides the basic structure for the app
+    // scaffold for layout
     return const Scaffold(
       body: SafeArea(child: MyBusinessCard()),
       backgroundColor: Colors.transparent,
@@ -40,12 +40,12 @@ class MyBusinessCard extends StatefulWidget {
 
 class _MyBusinessCardState extends State<MyBusinessCard>
     with SingleTickerProviderStateMixin {
-  // Animation controller for background gradient animation
+  // animation controller for bg gradient
   late final AnimationController _controller;
-  // Scroll controller for the scrollable content
+  // scroll controller for content
   late final ScrollController _scrollController;
 
-  // List of gradient color pairs for the background
+  // gradient color pairs
   final List<List<Color>> gradients = [
     [Color(0xFFff9a9e), Color(0xFFfad0c4)],
     [Color(0xFFa18cd1), Color(0xFFfbc2eb)],
@@ -53,14 +53,14 @@ class _MyBusinessCardState extends State<MyBusinessCard>
     [Color(0xFFf6d365), Color(0xFFfda085)],
   ];
 
-  // Index to track the current gradient
+  // gradient index
   int index = 0;
 
-  // About section text
+  // about text
   final String about =
       "I’m a builder & researcher focused on AI systems, reinforcement learning, multi‑agent dynamics, and full‑stack engineering. My work spans theoretical ML → production deployment. I care about robustness, strategy discovery, and turning research into products people actually use.";
 
-  // List of interests
+  // interests list
   final List<String> interests = [
     'Reinforcement Learning',
     'Multi-Agent RL',
@@ -73,10 +73,10 @@ class _MyBusinessCardState extends State<MyBusinessCard>
     'Automation',
   ];
 
-  // Portfolio URL
+  // portfolio url
   final Uri portfolioUri = Uri.parse('https://nimajafaricomp.github.io');
 
-  // Function to launch a URL in an external application
+  // open url externally
   Future<void> _launchUrl(Uri uri) async {
     try {
       if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
@@ -94,14 +94,14 @@ class _MyBusinessCardState extends State<MyBusinessCard>
   @override
   void initState() {
     super.initState();
-    // Initialize scroll controller
+    // init scroll controller
     _scrollController = ScrollController();
-    // Initialize animation controller
+    // init animation controller
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 6))
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
-              // Update gradient index and restart animation
+              // advance gradient and restart
               setState(() => index = (index + 1) % gradients.length);
               _controller.forward(from: 0);
             }
@@ -111,7 +111,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
 
   @override
   void dispose() {
-    // Dispose controllers to free resources
+    // dispose controllers
     _scrollController.dispose();
     _controller.dispose();
     super.dispose();
@@ -119,7 +119,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
 
   @override
   Widget build(BuildContext context) {
-    // Get the current and next gradient colors
+    // current and next gradient colors
     final colorsBegin = gradients[index];
     final colorsEnd = gradients[(index + 1) % gradients.length];
 
@@ -127,7 +127,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
       animation: _controller,
       builder: (context, child) {
         final t = _controller.value;
-        // Function to interpolate between two colors
+        // interpolate colors
         Color lerp(Color a, Color b) => Color.lerp(a, b, t)!;
         final bg = LinearGradient(
           begin: Alignment.topLeft,
@@ -163,7 +163,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                         builder: (context, constraints) {
                           final isWide = constraints.maxWidth >= 720;
 
-                          // Left column with profile picture and details
+                          // left column: profile & details
                           final leftColumn = Row(
                             children: [
                               Container(
@@ -272,7 +272,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                             ],
                           );
 
-                          // Right column with contact details and links
+                          // right column: contact & links
                           final rightColumn = Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -282,7 +282,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                                 spacing: 12,
                                 runSpacing: 8,
                                 children: [
-                                  // Phone with label
+                                  // phone button
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -305,14 +305,14 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                                     ],
                                   ),
 
-                                  // Email button
+                                  // email button
                                   TextButton.icon(
                                     onPressed: () => _launchUrl(Uri.parse('mailto:nima.mona82@gmail.com')),
                                     icon: const Icon(Icons.email_outlined, size: 18),
                                     label: const Text('nima.mona82@gmail.com'),
                                   ),
 
-                                  // Portfolio link: constrained width to prevent layout shifting
+                                  // portfolio link (constrained)
                                   ConstrainedBox(
                                     constraints: const BoxConstraints(maxWidth: 320, minWidth: 120),
                                     child: Align(
@@ -337,7 +337,7 @@ class _MyBusinessCardState extends State<MyBusinessCard>
                             ],
                           );
 
-                          // Layout based on screen width
+                          // responsive layout
                           return isWide
                               ? Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
